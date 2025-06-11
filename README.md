@@ -2,13 +2,11 @@
 
 A fully responsive, user-authenticated luxury e-commerce platform built with Django, Bootstrap, and modern frontend design principles. This project features premium product listings, an elegant checkout experience, dynamic cart functionality, invoice generation, and integrated payment simulation.
 
-![Screenshot](Pictures/screenshots/homepage.png)
 ![homepage](https://github.com/user-attachments/assets/083478a4-82d9-4411-afd9-de1ddb40e18a)
 
 
 ---
 
-## ✨ Features
 
 ### 🛍️ Shopping
 - Product listing with search & category filters
@@ -40,7 +38,8 @@ A fully responsive, user-authenticated luxury e-commerce platform built with Dja
 
 | Home Page | Product Detail | Checkout |
 |-----------|----------------|----------|
-| ![](screenshots/homepage.png) | ![](screenshots/product-detail.png) | ![](screenshots/checkout.png) |
+| ![](screenshots/homepage.png) | ![](screenshots/product-detail.png) |![Screenshot 2025-06-11 200804](https://github.com/user-attachments/assets/3c2c1609-f373-4d43-95b8-0abfab51bc7f)
+ |
 
 ---
 
@@ -67,4 +66,10 @@ python manage.py migrate
 ##Run
 
 python manage.py runserver
+
+## Admin access
+
+DM me for the Admin 
+User:******
+password:******
 
