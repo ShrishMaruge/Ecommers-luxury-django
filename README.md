@@ -55,17 +55,17 @@ A fully responsive, user-authenticated luxury e-commerce platform built with Dja
 
 ## 🔐 Admin Access
 
-For demonstration/testing purposes, admin access can be provided on request.
+Admin access can be provided on request.
 
 - **Username**: [Available upon request]
 - **Password**: [Available upon request]
 
-📩 DM [@ShrishMaruge](https://github.com/ShrishMaruge) for credentials or email me.
+📩 DM [@ShrishMaruge](https://github.com/ShrishMaruge) for credentials.
+
 <a href="mailto:shrishmaruge@gmail.com">
   <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Gmail_Icon.png" alt="Gmail" width="28" style="vertical-align: middle; margin-right: 6px;" />
   shrishmaruge@gmail.com
 </a>
-Email : shrish.maruge99@gmail.com
 
 ## Setup
 
