@@ -66,9 +66,17 @@ python manage.py migrate
 
 python manage.py runserver
 
-## Admin access
+## 🔐 Admin Access
 
-DM me for the Admin 
-User:******
-password:******
+For demonstration/testing purposes, admin access can be provided on request.
+
+- **Username**: [Available upon request]
+- **Password**: [Available upon request]
+
+📩 DM [@ShrishMaruge](https://github.com/ShrishMaruge) for credentials or email me.
+<a href="mailto:shrishmaruge@gmail.com">
+  <img src="https://img.shields.io/badge/Gmail-Email-red?logo=gmail&logoColor=white&style=for-the-badge" alt="Email Shrish Maruge" />
+</a>
+Email : shrish.maruge99@gmail.com 
+
 
