@@ -74,6 +74,9 @@ For demonstration/testing purposes, admin access can be provided on request.
 - **Password**: [Available upon request]
 
 📩 DM [@ShrishMaruge](https://github.com/ShrishMaruge) for credentials or email me.
+
+📩 **Contact:** [shrishmaruge@gmail.com](mailto:shrishmaruge@gmail.com)
+
 <a href="mailto:shrishmaruge@gmail.com">
   <img src="https://img.shields.io/badge/Gmail-Email-red?logo=gmail&logoColor=white&style=for-the-badge" alt="Email Shrish Maruge" />
 </a>
