@@ -3,6 +3,8 @@
 A fully responsive, user-authenticated luxury e-commerce platform built with Django, Bootstrap, and modern frontend design principles. This project features premium product listings, an elegant checkout experience, dynamic cart functionality, invoice generation, and integrated payment simulation.
 
 ![Screenshot](Pictures/screenshots/homepage.png)
+![homepage](https://github.com/user-attachments/assets/083478a4-82d9-4411-afd9-de1ddb40e18a)
+
 
 ---
 
