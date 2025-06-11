@@ -34,7 +34,7 @@ A fully responsive, user-authenticated luxury e-commerce platform built with Dja
 
 ## 🖼️ Screenshots
 
-> Add your actual screenshots to the `/screenshots` folder.
+>  actual screenshots.
 
 | Home Page | Product Detail | Checkout |
 |-----------|----------------|----------|
