@@ -53,5 +53,16 @@ A fully responsive, user-authenticated luxury e-commerce platform built with Dja
 
 ---
 
-## 📦 Project Structure
+## Setup
+
+```bash
+env\Scripts\activate
+cd Ecommers
+pip install -r requirements.txt
+python manage.py makemigrations
+python manage.py migrate
+
+##Run
+```bash
+python manage.py runserver
 
