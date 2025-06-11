@@ -38,10 +38,7 @@ A fully responsive, user-authenticated luxury e-commerce platform built with Dja
 
 | Home Page | Product Detail | Checkout |
 |-----------|----------------|----------|
-| ![Screenshot 2025-05-17 202837](https://github.com/user-attachments/assets/b2ca7c66-f738-4bc5-848a-b45f41eeb7a2)
- | ![Screenshot 2025-06-11 201126](https://github.com/user-attachments/assets/e0c04a06-3a2c-4ba9-bceb-64539bf85f0b)
- |![Screenshot 2025-06-11 200804](https://github.com/user-attachments/assets/3c2c1609-f373-4d43-95b8-0abfab51bc7f)
- |
+| ![Screenshot 2025-05-17 202837](https://github.com/user-attachments/assets/b2ca7c66-f738-4bc5-848a-b45f41eeb7a2) | ![Screenshot 2025-06-11 201126](https://github.com/user-attachments/assets/e0c04a06-3a2c-4ba9-bceb-64539bf85f0b) |![Screenshot 2025-06-11 200804](https://github.com/user-attachments/assets/3c2c1609-f373-4d43-95b8-0abfab51bc7f) |
 
 ---
 
