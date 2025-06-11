@@ -1,0 +1,323 @@
+{% block content %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+<style>
+    :root {
+        --luxury-gold: #d4af37;
+        --luxury-brown: #6D5C4A;
+        --glass-bg: rgba(255, 255, 255, 0.95);
+        --gradient-bg: linear-gradient(145deg, #f8f4f0, #e9e2dc);
+    }
+
+    body {
+        background: var(--gradient-bg);
+        font-family: 'Poppins', sans-serif;
+        color: #2d2d2d;
+    }
+
+    .stepper {
+        display: flex;
+        justify-content: space-between;
+        margin: 2rem 0;
+    }
+
+    .step {
+        text-align: center;
+        flex: 1;
+        position: relative;
+    }
+
+    .step:before,
+    .step:after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        height: 4px;
+        background: #ccc;
+        z-index: -1;
+    }
+
+    .step:before {
+        left: 0;
+        width: 50%;
+    }
+
+    .step:after {
+        right: 0;
+        width: 50%;
+    }
+
+    .step:first-child:before,
+    .step:last-child:after {
+        display: none;
+    }
+
+    .step.active .circle {
+        background: var(--luxury-gold);
+        color: white;
+    }
+
+    .circle {
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        background: #ccc;
+        border-radius: 50%;
+        margin: auto;
+        font-weight: bold;
+    }
+
+    .card {
+        background: var(--glass-bg);
+        border-radius: 1rem;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        padding: 1.5rem;
+    }
+
+    .btn-luxury {
+        background-color: var(--luxury-gold);
+        color: white;
+        border: none;
+        font-weight: 600;
+    }
+
+    .btn-luxury:hover {
+        background-color: #c8a030;
+    }
+
+    .tab-pane {
+        padding: 2rem 0;
+    }
+
+    .invoice-btn {
+        background-color: transparent;
+        color: var(--luxury-brown);
+        border: 1px solid var(--luxury-brown);
+    }
+
+    .invoice-btn:hover {
+        background-color: var(--luxury-brown);
+        color: white;
+    }
+
+    .card h5 {
+        color: var(--luxury-brown);
+        font-weight: 600;
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 0.5rem;
+    }
+
+    .list-group-item {
+        background: transparent;
+        border: none;
+        font-weight: 500;
+        color: #333;
+    }
+
+    .list-group-item span {
+        color: var(--luxury-gold);
+        font-weight: bold;
+    }
+
+    .order-total {
+        font-size: 1.25rem;
+        font-weight: bold;
+        color: var(--luxury-gold);
+    }
+
+    hr {
+        border-color: #ddd;
+        margin: 1rem 0;
+    }
+img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+</style>
+
+<div class="container py-5">
+    <a href="{% url 'home' %}" class="btn btn-secondary mb-2">← Continue Shopping</a>
+    <a href="{% url 'view_cart' %}" class="btn btn-secondary mb-2">Proceed to Cart</a>
+    <h2 class="text-center mb-4"><i class="bi bi-bag-fill me-2"></i>Luxury Checkout Experience</h2>
+
+    <!-- Stepper -->
+    <div class="stepper" id="checkout-steps">
+        <div class="step active" data-step="1"><div class="circle">1</div><small>Cart</small></div>
+        <div class="step" data-step="2"><div class="circle">2</div><small>Shipping</small></div>
+        <div class="step" data-step="3"><div class="circle">3</div><small>Payment</small></div>
+        <div class="step" data-step="4"><div class="circle">4</div><small>Review</small></div>
+    </div>
+
+    <!-- Tab Content -->
+    <div class="tab-content" id="checkoutTabs">
+        <!-- Cart -->
+        <div class="tab-pane fade show active" id="tab1">
+            <div class="card mb-4">
+                <h4>Your Cart</h4>
+                {% if cart_items %}
+                <table class="table mt-3">
+                    <thead>
+                        <tr><th>Product</th><th>Qty</th><th>Total</th></tr>
+                    </thead>
+                    <tbody>
+                        {% for item in cart_items %}
+                        <tr>
+                           
+                            <td>{{ item.product.name }}</td>
+                            <td>{{ item.quantity }}</td>
+                            <td>${{ item.total_price }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <div class="text-end fw-bold">Subtotal: ${{ total_price }}</div>
+                {% else %}
+                <div class="alert alert-warning">Your cart is empty.</div>
+                {% endif %}
+                <div class="text-end mt-3">
+                    <button class="btn btn-luxury" onclick="nextTab(2)">Next</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Shipping -->
+        <div class="tab-pane fade" id="tab2">
+            <div class="card">
+                <h4>Shipping Details</h4>
+                <form id="shipping-form">
+                    <input class="form-control mb-3" name="name" placeholder="Full Name" required>
+                    <input class="form-control mb-3" name="email" placeholder="Email" required>
+                    <input class="form-control mb-3" name="address" placeholder="Address" required>
+                    <select class="form-control mb-3" name="shipping_method" required>
+                        <option disabled selected>Choose Shipping Method</option>
+                        <option>Standard - $5</option>
+                        <option>Express - $15</option>
+                        <option>Luxury Same-Day - $25</option>
+                    </select>
+                    <div class="d-flex justify-content-between">
+                        <button class="btn btn-secondary" type="button" onclick="prevTab(1)">Back</button>
+                        <button class="btn btn-luxury" type="button" onclick="submitShippingForm()">Next</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Payment -->
+        <div class="tab-pane fade" id="tab3">
+            <div class="card">
+                <h4>Payment Information</h4>
+                <input class="form-control mb-3" placeholder="Cardholder Name">
+                <input class="form-control mb-3" placeholder="Card Number">
+                <div class="row">
+                    <div class="col-md-6">
+                        <input class="form-control mb-3" placeholder="Expiry">
+                    </div>
+                    <div class="col-md-6">
+                        <input class="form-control mb-3" placeholder="CVV">
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <button class="btn btn-secondary" onclick="prevTab(2)">Back</button>
+                    <button class="btn btn-luxury" onclick="nextTab(4)">Next</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Review -->
+        <div class="tab-pane fade" id="tab4">
+            <div class="row">
+                <!-- Order Summary -->
+                <div class="col-lg-6 mb-4">
+                    <div class="card">
+                        <h5 class="mb-4">🧮 Order Summary</h5>
+                        <ul class="list-group list-group-flush mb-3">
+                            {% for item in cart_items %}
+                            <li class="list-group-item d-flex justify-content-between">
+                                {{ item.product.name }} × {{ item.quantity }}
+                                <span>${{ item.total_price }}</span>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                        <hr>
+                        <div class="d-flex justify-content-between mb-4">
+                            <strong>Total:</strong>
+                            <span class="order-total">${{ total_price }}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Confirmation -->
+                <div class="col-lg-6">
+                    <div class="card">
+                        <h4>Review & Confirm</h4>
+                        <p>Review your information before placing the order.</p>
+                        <a href="{% url 'download_invoice' %}" class="btn btn-outline-primary me-2">
+                            <i class="bi bi-download me-1"></i>Download Invoice
+                        </a>
+                        <form method="POST" action="{% url 'home' %}">
+                            {% csrf_token %}
+                            <button class="btn btn-success w-100 mt-3">
+                                <i class="bi bi-shield-check me-2"></i>Place Order Securely
+                            </button>
+                        </form>
+
+                        
+                        <div class="text-start mt-3">
+                            <button class="btn btn-secondary" onclick="prevTab(3)">Back</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function nextTab(tab) {
+        document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('show', 'active'));
+        document.querySelector('#tab' + tab).classList.add('show', 'active');
+        updateSteps(tab);
+    }
+
+    function prevTab(tab) {
+        nextTab(tab);
+    }
+
+    function updateSteps(activeStep) {
+        const steps = document.querySelectorAll('.step');
+        steps.forEach((step, index) => {
+            step.classList.toggle('active', index < activeStep);
+        });
+    }
+
+    function submitShippingForm() {
+        const form = document.getElementById('shipping-form');
+        const formData = new FormData(form);
+
+        fetch("{% url 'save_shipping' %}", {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': '{{ csrf_token }}'
+            },
+            body: formData
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.success) {
+                nextTab(3);
+            } else {
+                alert('Failed to save shipping details.');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred.');
+        });
+    }
+</script>
+{% endblock %}

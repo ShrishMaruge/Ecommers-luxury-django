@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maison Luxe - Elegant Shopping</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f5f3f0;
+      color: #333;
+      padding-top: 100px;
+    }
+
+    .navbar {
+      background-color: #fff;
+      border-bottom: 1px solid #e6e6e6;
+    }
+
+    .navbar-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      color: #2c2c2c !important;
+    }
+
+    .product-card {
+      background: #fff;
+      border: none;
+      border-radius: 12px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      height: 100%;
+    }
+
+    .product-card:hover {
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+      transform: translateY(-6px);
+    }
+
+    .product-img {
+      height: 260px;
+      object-fit: cover;
+      border-bottom: 1px solid #eee;
+    }
+
+    .card-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    .price-tag {
+      color: #a67c52;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .category-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: #000;
+      color: #fff;
+      font-size: 0.75rem;
+      padding: 5px 10px;
+      border-radius: 20px;
+    }
+
+    .btn-outline-primary {
+      border-color: #a67c52;
+      color: #a67c52;
+    }
+
+    .btn-outline-primary:hover {
+      background-color: #a67c52;
+      color: white;
+    }
+
+    .nav-search .form-control {
+      border-radius: 30px 0 0 30px;
+    }
+
+    .nav-search .btn {
+      border-radius: 0 30px 30px 0;
+    }
+
+    .dropdown-menu {
+      font-size: 0.9rem;
+    }
+
+    .navbar .badge {
+      font-size: 0.7rem;
+      padding: 5px 8px;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .no-products {
+      text-align: center;
+      font-size: 1.2rem;
+      color: #888;
+      margin-top: 50px;
+    }
+
+    .toast-container {
+      z-index: 9999;
+    }
+
+    a.text-dark:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg fixed-top shadow-sm">
+  <div class="container">
+    <a class="navbar-brand" href="{% url 'home' %}"><i class="fas fa-gem text-warning me-2"></i>Maison Luxe</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navContent">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navContent">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">Categories</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="?category=MEN CLOTHES">Men Clothes</a></li>
+            <li><a class="dropdown-item" href="?category=Refrigerator">Refrigerators</a></li>
+            <li><a class="dropdown-item" href="?category=BAGS">Bags</a></li>
+            <li><a class="dropdown-item" href="?category=girls tshirt">Girls T-Shirt</a></li>
+            <li><a class="dropdown-item" href="?category=mens shoes">Men's Shoes</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">All Products</a></li>
+      </ul>
+
+      <form class="d-flex nav-search" method="GET">
+        <div class="input-group">
+          <input type="text" class="form-control" name="q" placeholder="Search..." value="{{ query }}">
+          <button class="btn btn-dark" type="submit"><i class="fas fa-search"></i></button>
+        </div>
+      </form>
+
+      <div class="ms-3 d-flex align-items-center gap-2">
+        <a href="{% url 'view_cart' %}" class="btn btn-light position-relative">
+          <i class="fas fa-shopping-cart"></i>
+          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+            {{ cart_count }}
+          </span>
+        </a>
+
+        {% if user.is_authenticated %}
+        <div class="dropdown">
+          <button class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown">
+            <i class="fas fa-user"></i> {{ user.username }}
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" href="{% url 'profile' %}"><i class="fas fa-user me-2"></i>Profile</a></li>
+            <li><a class="dropdown-item" href="#"><i class="fas fa-heart me-2"></i>Wishlist</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item text-danger" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
+          </ul>
+        </div>
+        {% else %}
+        <a href="{% url 'login' %}" class="btn btn-outline-dark">Login</a>
+        <a href="{% url 'signup' %}" class="btn btn-warning">Signup</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <h2 class="section-title">Explore Our Curated Collection</h2>
+  <div class="row g-4">
+    {% for i in pro %}
+    <div class="col-md-4 col-lg-3">
+      <div class="card product-card position-relative">
+        <span class="category-badge">{{ i.category }}</span>
+        <a href="{% url 'product_detail' i.id %}">
+          <img src="{{ i.image.url }}" class="card-img-top product-img" alt="{{ i.name }}">
+        </a>
+        <div class="card-body">
+          <h5 class="card-title">
+            <a href="{% url 'product_detail' i.id %}" class="text-dark text-decoration-none">{{ i.name }}</a>
+          </h5>
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <span class="price-tag">${{ i.price }}</span>
+            <span class="text-warning small">
+              <i class="fas fa-star"></i> {{ i.reviews }}
+            </span>
+          </div>
+          <a href="{% url 'buy_now' i.id %}" class="btn btn-warning">Buy Now</a>
+          <a href="{% url 'add_to_cart' i.id %}" class="btn btn-outline-primary w-100 mt-2">Add to Cart</a>
+        </div>
+      </div>
+    </div>
+    {% empty %}
+    <p class="no-products">No products available at the moment.</p>
+    {% endfor %}
+  </div>
+</div>
+
+{% if messages %}
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+  {% for message in messages %}
+    <div class="toast align-items-center text-white bg-success border-0 show" role="alert">
+      <div class="d-flex">
+        <div class="toast-body">{{ message }}</div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+{% endif %}
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
