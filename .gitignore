@@ -1,9 +1,44 @@
+# Python
 __pycache__/
+*.py[cod]
+*.pyo
+*.pyd
 *.pyc
 *.pkl
+
+# Virtual environment
+venv/
+env/
+
+# Django specific
 *.sqlite3
 *.log
+*.pot
+*.pyc
+db.sqlite3
+
+# Secret settings
 .env
-venv/
-.env/
+.env.local
+.env.*
+
+# VS Code
+.vscode/
+
+# Jupyter
 *.ipynb_checkpoints/
+
+# Static & media (auto-generated in prod)
+staticfiles/
+media/
+
+# PDF invoices (optional cleanup)
+*.pdf
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Render / deployment artifacts
+render.yaml
+
