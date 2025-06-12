@@ -62,9 +62,9 @@ Admin access can be provided on request.
 
 📩 DM [@ShrishMaruge](https://github.com/ShrishMaruge) for credentials.
 
-<a href="mailto:shrishmaruge@gmail.com">
+<a href="mailto:shrish.maruge99@gmail.com">
   <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Gmail_Icon.png" alt="Gmail" width="28" style="vertical-align: middle; margin-right: 6px;" />
-  shrishmaruge@gmail.com
+  shrish.maruge99@gmail.com
 </a>
 
 ## Setup
