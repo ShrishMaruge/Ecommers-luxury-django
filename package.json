@@ -1,0 +1,11 @@
+{
+  "name": "django-ecommerce",
+  "version": "1.0.0",
+  "description": "Django E-commerce Application",
+  "scripts": {
+    "build": "echo 'Django project - no build step required'",
+    "start": "python manage.py runserver"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
