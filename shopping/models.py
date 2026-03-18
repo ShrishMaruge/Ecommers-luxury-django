@@ -8,7 +8,7 @@ class Product(models.Model):
     reviews = models.DecimalField(max_digits=3, decimal_places=2)
     category = models.CharField(max_length=100)
     stock = models.IntegerField()
-    image = models.ImageField(upload_to="media/")
+    image = models.ImageField(upload_to="products/")
 
     def __str__(self):
         return self.name
