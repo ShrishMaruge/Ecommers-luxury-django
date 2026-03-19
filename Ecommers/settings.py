@@ -127,6 +127,10 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 # Default primary key field type
 import cloudinary
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+import os
 
 cloudinary.config(
     cloud_name='dmtzhfs1q',
