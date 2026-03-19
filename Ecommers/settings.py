@@ -135,6 +135,8 @@ cloudinary.config(
 )
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+WHITENOISE_ALLOW_ALL_ORIGINS = True
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
+
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
