@@ -126,17 +126,13 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 # Default primary key field type
-import cloudinary
-import cloudinary
-import cloudinary.uploader
-import cloudinary.api
 import os
 
-cloudinary.config(
-    cloud_name='dmtzhfs1q',
-    api_key='513999231322436',
-    api_secret='PGaa1ZFXIXWFBkrAhPF7xl44gBk'
-)
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME'),
+    'API_KEY': os.environ.get('CLOUDINARY_API_KEY'),
+    'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET'),
+}
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 WHITENOISE_ALLOW_ALL_ORIGINS = True
